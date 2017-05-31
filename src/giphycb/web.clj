@@ -27,6 +27,12 @@
   (rand-nth ["Hello world!" "你好 世界!", "Bonjour le monde!", "Ciao mondo!"
              "안녕 세상!" "سلام دنیا" "Hola honua!" "Hei verden!" "Hallo welt!"]))
 
+(defn search-results []
+  (layout "Giphy Fun Search Results"
+          [:h1 "Results!"]
+           [:div {:style "width: 800px; word-wrap: break-word;"}
+            (str (api/get-api "funny cat"))]))
+
 (defn main-page []
   (layout "Giphy Fun"
           [:h1 "Giphy Fun"]
@@ -34,6 +40,7 @@
 
 (defroutes main-routes
   (route/resources "/")
-  (GET "/" [] (main-page)))
+  (GET "/" [] (main-page))
+  (GET "/results" [] (search-results)))
 
 (def handler (site main-routes))

@@ -7,12 +7,14 @@
 * Add dependencies for hiccup, cheshire, and clj-http
 * In web.clj add a `layout` function which renders hiccup content within a common hiccup layout
 * Modify `main-page` function in web.clj to render the result of `rand-hello` in the hiccup layout
+* See results at `http://localhost:3000`
 
 ## 03-call-api
 * In core.clj implement `get-api` function to call giphy search api with search term
-* Write a function in web.clj that calls `get-api` with a hard-coded search-term and returns the results as a string within a hiccup `:code` block, i.e. `[:code results]`.
+* NOTE: don't forget the giphy api key!
+* Write a function in web.clj that calls `get-api` with a hard-coded search-term and returns the results as a string within a hiccup `:div`, i.e. `[:div results]`.
 * Add a new route in web.clj to show search results (`/results`)
-* Call your new function from your new route and browse to new route
+* Call your new function from your new route and browse to new route at `http:localhost:3000/results`
 
 ## 04-search-form
 * Make a form in hiccup that submits a new search term to the results route
@@ -22,7 +24,7 @@
 ## 05-render-gifs
 * Parse json API response with cheshire, creating a list of maps in clojure
 * Iterate across the list of results, creating a hiccup list of animated gifs
-* Replace the hiccup `:code` block with the hiccup list of animated gifs as the response from `/results`
+* Replace the text results with the hiccup list of animated gifs as the response from `/results`
 * Check it out in your browser
 
 ## 06-have-fun

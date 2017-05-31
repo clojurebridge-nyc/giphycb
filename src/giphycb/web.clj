@@ -23,10 +23,14 @@
     [:div.container
      content]]))
 
+(defn rand-hello []
+  (rand-nth ["Hello world!" "你好 世界!", "Bonjour le monde!", "Ciao mondo!"
+             "안녕 세상!" "سلام دنیا" "Hola honua!" "Hei verden!" "Hallo welt!"]))
+
 (defn main-page []
   (layout "Giphy Fun"
           [:h1 "Giphy Fun"]
-          [:p "你好，世界!"]))
+          [:p (rand-hello)]))
 
 (defroutes main-routes
   (route/resources "/")

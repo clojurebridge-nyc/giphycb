@@ -27,20 +27,25 @@
   (rand-nth ["Hello world!" "你好 世界!", "Bonjour le monde!", "Ciao mondo!"
              "안녕 세상!" "سلام دنیا" "Hola honua!" "Hei verden!" "Hallo welt!"]))
 
-(defn search-results []
+(defn search-results [search-term]
   (layout "Giphy Fun Search Results"
           [:h1 "Results!"]
            [:div {:style "width: 800px; word-wrap: break-word;"}
-            (str (api/get-api "funny cat"))]))
+            (str (api/get-api search-term))]))
 
 (defn main-page []
-  (layout "Giphy Fun"
-          [:h1 "Giphy Fun"]
-          [:p (rand-hello)]))
+  (layout "Giphy Fun Search Form"
+          [:h1 "Search Giphy!"]
+          (form/form-to {:role "form"} [:get "/results"]
+                        [:div.row
+                         [:div.form-group.col-md-5
+                          (form/label "search-term" "Giphy Search: ")
+                          (form/text-field "search-term")
+                          (form/submit-button "Submit")]])))
 
 (defroutes main-routes
   (route/resources "/")
   (GET "/" [] (main-page))
-  (GET "/results" [] (search-results)))
+  (GET "/results" [search-term] (search-results search-term)))
 
 (def handler (site main-routes))

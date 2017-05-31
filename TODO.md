@@ -29,6 +29,7 @@
 
 ## 06-have-fun
 * Limit or filter the results from the giphy API
+* Add better navigation
 * Call other giphy APIs
 * Render a list of thumbnails at `/results` and link to a landing page for each thumbnail for showing the full-sized animated gif
 * Using the random API, create a page that shows a random gif and a "shuffle" button that displays a new random gif every time you click it

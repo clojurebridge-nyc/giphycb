@@ -27,11 +27,24 @@
   (rand-nth ["Hello world!" "你好 世界!", "Bonjour le monde!", "Ciao mondo!"
              "안녕 세상!" "سلام دنیا" "Hola honua!" "Hei verden!" "Hallo welt!"]))
 
+(defn giphy-gif-src [gif]
+  (get-in gif [:images :downsized :url]))
+
+(defn giphy-img [gif]
+  [:img {:src (giphy-gif-src gif)}])
+
+(defn unordered-list
+  [coll]
+  [:ul
+   (for [list-item coll]
+     [:li list-item])])
+
 (defn search-results [search-term]
-  (layout "Giphy Fun Search Results"
-          [:h1 "Results!"]
-           [:div {:style "width: 800px; word-wrap: break-word;"}
-            (str (api/get-api search-term))]))
+  (let [results (api/get-api search-term)]
+    (layout "Giphy Fun Search Results"
+            [:h1 "Results!"]
+            (unordered-list
+              (map giphy-img results)))))
 
 (defn main-page []
   (layout "Giphy Fun Search Form"

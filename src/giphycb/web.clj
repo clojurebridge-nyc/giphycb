@@ -23,28 +23,17 @@
     [:div.container
      content]]))
 
-(defn rand-hello []
-  (rand-nth ["Hello world!" "你好 世界!", "Bonjour le monde!", "Ciao mondo!"
-             "안녕 세상!" "سلام دنیا" "Hola honua!" "Hei verden!" "Hallo welt!"]))
-
-(defn giphy-gif-src [gif]
-  (get-in gif [:images :downsized :url]))
-
-(defn giphy-img [gif]
-  [:img {:src (giphy-gif-src gif)}])
-
-(defn unordered-list
-  [coll]
-  [:ul
-   (for [list-item coll]
-     [:li list-item])])
-
 (defn search-results [search-term]
   (let [results (api/get-api search-term)]
     (layout "Giphy Fun Search Results"
-            [:h1 "Results!"]
-            (unordered-list
-              (map giphy-img results)))))
+            [:div#reagent-app]
+            (page/include-js "/js/app.js")
+            [:script
+             {:type "text/javascript"}
+             (format "window.searchResults = %s" results)]
+            [:script
+             {:type "text/javascript"}
+             "giphycb.cljs.core.main();"])))
 
 (defn main-page []
   (layout "Giphy Fun Search Form"

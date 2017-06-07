@@ -1,7 +1,12 @@
-# TODOs
+# STEPS
+
+Run this teaching app by running `lein ring server` at the project root. This should open up your browser at `http://localhost:3000`.
 
 ## 01-init
 * Familiarize yourself with the organization of the clojure web app project
+* 01-init files are identical to files at the root
+* You can run different steps by changing the ring handler definition in project.clj and restarting the server
+    * i.e. To run this step, in project.clj `:ring {:handler giphycb.01-init.web/handler}` then run `lein ring server`.
 
 ## 02-hiccup
 * Add dependencies for hiccup, cheshire, and clj-http

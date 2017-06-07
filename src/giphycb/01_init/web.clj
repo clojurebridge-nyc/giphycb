@@ -1,5 +1,5 @@
-(ns giphycb.web
-  (:require [giphycb.core :as api]
+(ns giphycb.01-init.web
+  (:require [giphycb.01-init.core :as api]
             [compojure.core :refer [defroutes GET]]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
